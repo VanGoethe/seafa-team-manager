@@ -27,7 +27,7 @@ export const AuthModel: Auth = {
     // success();
     state.token = payload.token;
     state.user = payload.user;
-    // return (state.loading = payload);
+    return;
   }),
   failure: action((state, payload: any) => {
     return (state.errors = payload);
@@ -51,11 +51,11 @@ export const AuthModel: Auth = {
   }),
   login: thunk(async (actions, payload: LoginPayload) => {
     actions.request(true as any);
-
     try {
-      const response = await client().post("/login", payload);
+      const response = await client().post("/auth", payload);
 
       const { token } = response.data;
+      console.log(response, "slkj");
 
       storage.save("jwtToken", token);
 
@@ -69,7 +69,7 @@ export const AuthModel: Auth = {
       await actions.success({ user: decoded, token: token } as any);
       actions.request(false as any);
       //   redirectTo(routes.homePage);
-      window.location.href = routes.booking;
+      window.location.href = routes.dashboard;
     } catch (error) {
       actions.request(false as any);
       actions.failure(error.response ? error.response.data : null);

@@ -21,7 +21,7 @@ const Header = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
-        <span className="navbar-brand">FlighHigh Airlines</span>
+        <span className="navbar-brand">Team Manager</span>
         <button
           className="navbar-toggler"
           type="button"
@@ -35,39 +35,34 @@ const Header = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            {connected ? (
-              <>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/booking">
-                    Booking
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/checkin">
-                    Checkin
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/manage-booking">
-                    Manage booking
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/flight-information">
-                    Flight information
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/about">
-                    About
-                  </Link>
-                </li>{" "}
-              </>
-            ) : null}
+            {/* {connected ? ( */}
+            <>
+              <li className="nav-item">
+                <Link className="nav-link" to="/dashboard">
+                  dashboard
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/players">
+                  players
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/profiles">
+                  profiles
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/validation">
+                  validation
+                </Link>
+              </li>
+            </>
+            {/* ) : null} */}
           </ul>
           <ul className="navbar-nav">
-            {connected ? (
-              <>
+            {/* {connected ? ( */}
+            {/* <>
                 <li className="nav-item">
                   <span
                     style={{ cursor: "pointer" }}
@@ -81,26 +76,20 @@ const Header = () => {
                   <span
                     style={{ cursor: "pointer" }}
                     className="nav-link"
-                    // onClick={() => logout()}
                   >
                     <i className="fa fa-user"></i> {connectedUser.firstName}
                   </span>
                 </li>
-              </>
-            ) : (
-              <>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/login">
-                    Login
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/signup">
-                    Signup
-                  </Link>
-                </li>
-              </>
-            )}
+              </> */}
+            {/* ) : ( */}
+            <>
+              <li className="nav-item">
+                <Link className="nav-link" to="/login">
+                  Login
+                </Link>
+              </li>
+            </>
+            {/* )} */}
           </ul>
         </div>
       </div>

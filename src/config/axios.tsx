@@ -16,7 +16,7 @@ export const client = () => {
   instance.interceptors.request.use(function (config) {
     let token: any = localStorage.getItem("jwtToken");
     token = JSON.parse(token);
-    config.headers.Authorization = `${token}`;
+    config.headers.common["x-auth-token"] = `${token}`;
 
     return config;
   });
@@ -27,9 +27,9 @@ export const client = () => {
 export const setAuthToken = (token: string) => {
   if (token) {
     // Apply to every request headers with axios.defaults.headers.common
-    axios.defaults.headers.common["Authorization"] = token;
+    axios.defaults.headers.common["x-auth-token"] = token;
   } else {
     // delete auth header
-    delete axios.defaults.headers.common["Authorization"];
+    delete axios.defaults.headers.common["x-auth-token"];
   }
 };

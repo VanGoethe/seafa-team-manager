@@ -4,9 +4,14 @@ import { Switch, Router } from "react-router-dom";
 import { getRoutes } from "routing";
 import { StoreProvider } from "easy-peasy";
 import { store } from "state";
-import { history } from "utils";
+import { history, storage } from "utils";
 import "react-datepicker/dist/react-datepicker.css";
 import "./App.css";
+import { setAuthToken } from "config";
+
+if (localStorage.jwtToken) {
+  setAuthToken(localStorage.jwtToken);
+}
 
 export const App: React.FC = () => {
   const routes = getRoutes();

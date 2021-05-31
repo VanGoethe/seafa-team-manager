@@ -1,7 +1,7 @@
 import { AuthModel } from "./auth.model";
-import { BookingModel } from "./booking.model";
+import { PlayersModel } from "./players.model";
 
 export let models = {
   auth: AuthModel,
-  booking: BookingModel,
+  players: PlayersModel,
 };
