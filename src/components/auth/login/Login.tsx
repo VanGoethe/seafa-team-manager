@@ -22,11 +22,24 @@ export const Login = (props: Props) => {
   return (
     <div className="auth-layout">
       <div className="login-layout">
-        {Object.keys(errors).length > 0 ? (
-          <div className="alert alert-warning mt-4" role="alert">
-            {/* {errors?} */}
+        {errors.msg ? (
+          <div
+            className="alert alert-warning alert-dismissible fade show mt-1"
+            role="alert"
+          >
+            {errors.msg}
           </div>
         ) : null}
+        {errors && errors.errors?.length > 0
+          ? errors.errors.map((err: any) => (
+              <div
+                className="alert alert-warning alert-dismissible fade show mt-1"
+                role="alert"
+              >
+                {err.param}: {err.msg}
+              </div>
+            ))
+          : null}
         <div className="card">
           <div style={{ padding: "40px" }}>
             {/* <form> */}

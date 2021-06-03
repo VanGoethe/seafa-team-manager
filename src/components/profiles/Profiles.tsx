@@ -22,8 +22,8 @@ export const Profiles = (props: Props) => {
     (action) => action.profiles
   );
 
-  const { players, loadingPlayers } = useStoreState((state) => state.players);
-  const { profiles, loadingProfiles } = useStoreState(
+  const { players } = useStoreState((state) => state.players);
+  const { profiles, loadingProfiles, errors } = useStoreState(
     (state) => state.profiles
   );
 
@@ -47,9 +47,29 @@ export const Profiles = (props: Props) => {
     registerProfile({ player, data } as any);
   };
 
+  console.log(errors);
+
   return (
     <div className="mt-2">
       <h1 className="text-white">Profiles</h1>
+      {errors.msg ? (
+        <div
+          className="alert alert-warning alert-dismissible fade show mt-1"
+          role="alert"
+        >
+          {errors.msg}
+        </div>
+      ) : null}
+      {errors && errors.errors?.length > 0 ? (
+        <ul
+          className="alert alert-warning alert-dismissible fade show mt-1 ps-5"
+          role="alert"
+        >
+          {errors.errors.map((err: any) => (
+            <li>{err.msg}</li>
+          ))}
+        </ul>
+      ) : null}
       <div className="card pt-4 ps-5 pe-5 pb-4">
         <form className="row g-3">
           <div className="col-6">

@@ -8,7 +8,7 @@ export const Dashboard = (props: Props) => {
   const { getPlayers } = useStoreActions((action) => action.players);
   const { players, loadingPlayers } = useStoreState((state) => state.players);
   const { getProfiles } = useStoreActions((action) => action.profiles);
-  const { profiles, loadingProfiles } = useStoreState(
+  const { profiles, loadingProfiles, errors } = useStoreState(
     (state) => state.profiles
   );
 
@@ -191,6 +191,21 @@ export const Dashboard = (props: Props) => {
         </div> */}
         {/* </div> */}
       </div>
+      {errors.msg ? (
+        <div className="alert alert-warning alert-dismissible fade show mt-1">
+          {errors.msg}
+        </div>
+      ) : null}
+      {errors && errors.errors?.length > 0 ? (
+        <ul
+          className="alert alert-warning alert-dismissible fade show mt-1 ps-5"
+          role="alert"
+        >
+          {errors.errors.map((err: any) => (
+            <li>{err.msg}</li>
+          ))}
+        </ul>
+      ) : null}
       <div className="card p-5">
         <TableComponent loading={loadingProfiles} profiles={profiles} />
       </div>
