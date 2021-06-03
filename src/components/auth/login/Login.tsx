@@ -36,7 +36,7 @@ export const Login = (props: Props) => {
                 className="alert alert-warning alert-dismissible fade show mt-1"
                 role="alert"
               >
-                {err.param}: {err.msg}
+                {err.msg}
               </div>
             ))
           : null}
