@@ -14,12 +14,12 @@ export const getRoutes = () => (
   <Fragment>
     <Route exact path={routes.login} component={Login} />
     <Route exact path={routes.signup} component={Signup} />
-    {/* <PrivateRoutes> */}
-    <Route exact path={routes.dashboard} component={Dashboard} />
-    <Route exact path={routes.players} component={Players} />
-    <Route exact path={routes.profiles} component={Profiles} />
-    <Route exact path={routes.validation} component={Validation} />
-    <Redirect from="/" to={routes.dashboard} />
-    {/* </PrivateRoutes> */}
+    <PrivateRoutes>
+      <Route exact path={routes.dashboard} component={Dashboard} />
+      <Route exact path={routes.players} component={Players} />
+      <Route exact path={routes.profiles} component={Profiles} />
+      <Route exact path={routes.validation} component={Validation} />
+      <Redirect from="/" to={routes.dashboard} />
+    </PrivateRoutes>
   </Fragment>
 );

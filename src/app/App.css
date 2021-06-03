@@ -25,6 +25,13 @@ body {
   background-position: left;
   /* background-color: #0e1116 */
   min-height: 100vh;
+  height: fit-content;
+}
+
+.App{
+  overflow-y: auto;
+    height: 100vh;
+    padding-bottom: 10px;
 }
 
 .loader {
@@ -41,4 +48,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: fit-content;
+}
+
+.underline{
+  text-decoration: underline;
+}
+
+.italic{
+  font-style: italic;
 }

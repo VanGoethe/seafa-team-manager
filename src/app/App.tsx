@@ -5,6 +5,7 @@ import { getRoutes } from "routing";
 import { StoreProvider } from "easy-peasy";
 import { store } from "state";
 import { history, storage } from "utils";
+import "antd/dist/antd.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "./App.css";
 import { setAuthToken } from "config";

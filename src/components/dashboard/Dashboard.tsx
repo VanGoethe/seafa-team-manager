@@ -1,12 +1,63 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { TableComponent } from "../validation/Table";
+import { useStoreActions, useStoreState } from "hooks";
 
 interface Props {}
 
 export const Dashboard = (props: Props) => {
+  const { getPlayers } = useStoreActions((action) => action.players);
+  const { players, loadingPlayers } = useStoreState((state) => state.players);
+  const { getProfiles } = useStoreActions((action) => action.profiles);
+  const { profiles, loadingProfiles } = useStoreState(
+    (state) => state.profiles
+  );
+
+  const [totalBoys, setTotalBoys] = useState(0 as any);
+  const [totalGirls, setTotalGirls] = useState(0 as any);
+  const [active, setActive] = useState(0 as any);
+  const [inactive, setInactive] = useState(0 as any);
+
+  useEffect(() => {
+    getPlayers();
+    getProfiles();
+  }, []);
+
+  useEffect(() => {
+    let length = 0;
+    players?.filter((pl: any) => {
+      if (pl.gender && pl.gender === "male") {
+        return (length = length + 1);
+      }
+    });
+    setTotalBoys(length);
+  }, [players]);
+
+  useEffect(() => {
+    let length = 0;
+    players?.filter((pl: any) => {
+      if (pl.gender && pl.gender === "female") {
+        return (length = length + 1);
+      }
+    });
+    setTotalGirls(length);
+  }, [players]);
+
+  useEffect(() => {
+    let lengthActive = 0;
+    let lengthInactive = 0;
+    profiles?.filter((pl: any) => {
+      if (pl.isActive) {
+        return (lengthActive = lengthActive + 1);
+      } else return (lengthInactive = lengthInactive + 1);
+    });
+    setActive(lengthActive);
+    setInactive(lengthInactive);
+  }, [profiles]);
+
   return (
     <div className="mt-5">
       {/* <div className="card mt-5 p-3"> */}
-      <h1 className="text-white">Dashboard</h1>
+      <h1 className="italic">SAINT ESPRIT ALUMNI FOOTBALL ACADEMY</h1>
 
       <div
         className="w-100"
@@ -30,7 +81,13 @@ export const Dashboard = (props: Props) => {
                 style={{ fontSize: "30px", color: "#F44336" }}
                 className="fas fa-users"
               ></i>
-              <div style={{ marginLeft: "15px" }}>25 total players</div>
+              {loadingPlayers ? (
+                <div style={{ marginLeft: "15px" }}>loading...</div>
+              ) : (
+                <div style={{ marginLeft: "15px" }}>
+                  {players?.length} total players
+                </div>
+              )}
             </h5>
           </div>
         </div>
@@ -41,12 +98,19 @@ export const Dashboard = (props: Props) => {
               className="card-title"
               style={{ display: "flex", justifyContent: "center" }}
             >
-              {" "}
               <i
                 style={{ fontSize: "30px", color: "#F44336" }}
                 className="fas fa-user"
               ></i>
-              <div style={{ marginLeft: "15px" }}>18 total boys</div>
+              {loadingPlayers ? (
+                <div style={{ marginLeft: "15px" }}>loading...</div>
+              ) : (
+                <>
+                  <div style={{ marginLeft: "15px" }}>
+                    {totalBoys} total boys
+                  </div>
+                </>
+              )}
             </h5>
           </div>
         </div>
@@ -57,12 +121,19 @@ export const Dashboard = (props: Props) => {
               className="card-title"
               style={{ display: "flex", justifyContent: "center" }}
             >
-              {" "}
               <i
                 style={{ fontSize: "30px", color: "#F44336" }}
                 className="fas fa-user"
               ></i>
-              <div style={{ marginLeft: "15px" }}>25 total girls</div>
+              {loadingPlayers ? (
+                <div style={{ marginLeft: "15px" }}>loading...</div>
+              ) : (
+                <>
+                  <div style={{ marginLeft: "15px" }}>
+                    {totalGirls} total girls
+                  </div>
+                </>
+              )}
             </h5>
           </div>
         </div>
@@ -73,12 +144,17 @@ export const Dashboard = (props: Props) => {
               className="card-title"
               style={{ display: "flex", justifyContent: "center" }}
             >
-              {" "}
               <i
                 style={{ fontSize: "30px", color: "#F44336" }}
                 className="fas fa-address-book"
               ></i>
-              <div style={{ marginLeft: "15px" }}>21 active Accounts</div>
+              {loadingProfiles ? (
+                <div style={{ marginLeft: "15px" }}>loading...</div>
+              ) : (
+                <div style={{ marginLeft: "15px" }}>
+                  {active} active Accounts
+                </div>
+              )}
             </h5>
           </div>
         </div>
@@ -91,9 +167,15 @@ export const Dashboard = (props: Props) => {
             >
               <i
                 style={{ fontSize: "30px", color: "#F44336" }}
-                className="far fa-address-book"
+                className="fas fa-address-book"
               ></i>
-              <div style={{ marginLeft: "15px" }}>4 inactive accounts</div>
+              {loadingProfiles ? (
+                <div style={{ marginLeft: "15px" }}>loading...</div>
+              ) : (
+                <div style={{ marginLeft: "15px" }}>
+                  {inactive} inactive Accounts
+                </div>
+              )}
             </h5>
           </div>
         </div>
@@ -110,75 +192,7 @@ export const Dashboard = (props: Props) => {
         {/* </div> */}
       </div>
       <div className="card p-5">
-        <div className="">
-          <h3>All Users</h3>
-          <table className="table">
-            <thead>
-              <tr>
-                <th scope="col">First name</th>
-                <th scope="col">Last name</th>
-                <th scope="col">Gender</th>
-                <th scope="col">Age</th>
-                <th scope="col">Nationality</th>
-                <th scope="col">Adress</th>
-                <th scope="col">Position</th>
-                <th scope="col">foot</th>
-                <th scope="col">Joined at</th>
-                <th scope="col">Contract signed</th>
-                <th scope="col">last contract signed at</th>
-                <th scope="col">Contract expires at</th>
-                <th scope="col">status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <th>1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <th>1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <th>1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <th>1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <th>1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <th>1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <TableComponent loading={loadingProfiles} profiles={profiles} />
       </div>
     </div>
   );

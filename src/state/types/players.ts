@@ -9,4 +9,6 @@ export interface Players {
   success: Action<Players>;
   failure: Action<Players>;
   getPlayers: Thunk<Players>;
+  registerPlayer: Thunk<Players, any>;
+  deletePlayer: Thunk<Players, string>;
 }
