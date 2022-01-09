@@ -17,13 +17,13 @@ export const TableComponent = ({ profiles, loading }: Props) => {
       title: "First Name",
       dataIndex: "firstname",
       key: "firstname",
-      render: (text: any) => <a>{text}</a>,
+      render: (text: any) => <a>{text ? text : '-'}</a>,
     },
     {
       title: "Last Name",
       dataIndex: "lastname",
       key: "lastname",
-      render: (text: any) => <a>{text}</a>,
+      render: (text: any) => <a>{text ? text : "-"}</a>,
     },
     {
       title: "Address",
@@ -35,6 +35,7 @@ export const TableComponent = ({ profiles, loading }: Props) => {
       title: "Position",
       dataIndex: "position",
       key: "position",
+      render: (text: number) => <span>{text ? text : "-"}</span>
     },
     {
       title: "Foot",
@@ -53,7 +54,7 @@ export const TableComponent = ({ profiles, loading }: Props) => {
       title: "Joined at",
       dataIndex: "joined_at",
       key: "joined_at",
-      render: (text: any) => <span>{moment(text).format("YYYY-MM-DD")}</span>,
+      render: (text: Date) => <span>{text ? moment(text).format("YYYY-MM-DD") : "-"}</span>,
     },
     // {
     //   title: "Last Contract at",
@@ -71,13 +72,14 @@ export const TableComponent = ({ profiles, loading }: Props) => {
       title: "Phone Number",
       dataIndex: 'contact',
       key: 'contact',
+      render: (text: number) => <span>{text ? text : "-"}</span>
     },
     {
       title: 'Category',
       dataIndex: "category",
       key: "category",
       render: (text: any) => (
-        <span>{text === "pepiniere" ? "Pépinière" : text}</span>
+        <span>{text ? text === "pepiniere" ? "Pépinière" : text : "-"}</span>
       )
     },
     {
