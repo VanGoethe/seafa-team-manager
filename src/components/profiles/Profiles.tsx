@@ -11,10 +11,12 @@ export const Profiles = (props: Props) => {
   const [address, setAddress] = useState(null as unknown);
   const [foot, setFoot] = useState(null as unknown);
   const [position, setPosition] = useState(null as unknown);
-  const [lastContract, setLastContract] = useState(null as unknown);
-  const [contractExpires, setContractExpires] = useState(null as unknown);
-  const [contracts, setContracts] = useState(null as unknown);
+  const [contact, setContact] = useState(null as unknown as number);
+  // const [lastContract, setLastContract] = useState(null as unknown);
+  // const [contractExpires, setContractExpires] = useState(null as unknown);
+  // const [contracts, setContracts] = useState(null as unknown);
   const [joined, setJoinedAt] = useState(null as unknown);
+  const [category, setCategory] = useState(null as unknown);
   const [isActive, setIsActive] = useState(null as unknown);
 
   const { getPlayers } = useStoreActions((action) => action.players);
@@ -38,9 +40,11 @@ export const Profiles = (props: Props) => {
       foot,
       position,
       joined_at: joined,
-      number_of_contract: contracts,
-      last_contract_signed_at: lastContract,
-      contract_experies_at: contractExpires,
+      // number_of_contract: contracts,
+      // last_contract_signed_at: lastContract,
+      // contract_experies_at: contractExpires,
+      contact: contact,
+      category: category,
       isActive,
     };
     console.log({ player, data }, "ls");
@@ -121,8 +125,15 @@ export const Profiles = (props: Props) => {
               onChange={(date: any, dateString: any) => setJoinedAt(dateString)}
             />
           </div>
-
-          <div className="col-3">
+          <div className="col-4">
+            <label className="form-label">Phone Number</label>
+            <input
+              type="number"
+              onChange={(el: any) => setContact(el.target.value)}
+              className="form-control"
+            />
+          </div>
+          {/* <div className="col-3">
             <label className="form-label">Contracts</label>
             <input
               type="number"
@@ -147,6 +158,19 @@ export const Profiles = (props: Props) => {
                 setContractExpires(dateString)
               }
             />
+          </div> */}
+          <div className="col-4">
+            <label className="form-label">Category</label>
+            <select
+              onChange={(el: any) => setCategory(el.target.value)}
+              className="form-select"
+            >
+              <option selected>Choose...</option>
+              <option value="sage">Sage</option>
+              <option value="ordinaire">Ordinaire</option>
+              <option value="sympathisant">Sympathisant</option>
+              <option value="pepiniere">Pépinière</option>
+            </select>
           </div>
           <div className="col-3">
             <label className="form-label">Active</label>
@@ -166,6 +190,7 @@ export const Profiles = (props: Props) => {
               icon={<SaveOutlined />}
               onClick={register}
               loading={loadingProfiles}
+              disabled={!player || player === null || player === undefined ? true : false}
             >
               Save
             </Button>

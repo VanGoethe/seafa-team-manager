@@ -44,28 +44,41 @@ export const TableComponent = ({ profiles, loading }: Props) => {
         <Tag color={text === "both" ? "limegreen" : "grey"}>{text}</Tag>
       ),
     },
-    {
-      title: "No of contract",
-      dataIndex: "number_of_contract",
-      key: "number_of_contract",
-    },
+    // {
+    //   title: "No of contract",
+    //   dataIndex: "number_of_contract",
+    //   key: "number_of_contract",
+    // },
     {
       title: "Joined at",
       dataIndex: "joined_at",
       key: "joined_at",
       render: (text: any) => <span>{moment(text).format("YYYY-MM-DD")}</span>,
     },
+    // {
+    //   title: "Last Contract at",
+    //   dataIndex: "last_contract_signed_at",
+    //   key: "last_contract_signed_at",
+    //   render: (text: any) => <span>{moment(text).format("YYYY-MM-DD")}</span>,
+    // },
+    // {
+    //   title: "Contract expires at",
+    //   dataIndex: "contract_expiries_at",
+    //   key: "contract_expiries_at",
+    //   render: (text: any) => <span>{moment(text).format("YYYY-MM-DD")}</span>,
+    // },
     {
-      title: "Last Contract at",
-      dataIndex: "last_contract_signed_at",
-      key: "last_contract_signed_at",
-      render: (text: any) => <span>{moment(text).format("YYYY-MM-DD")}</span>,
+      title: "Phone Number",
+      dataIndex: 'contact',
+      key: 'contact',
     },
     {
-      title: "Contract expires at",
-      dataIndex: "contract_expiries_at",
-      key: "contract_expiries_at",
-      render: (text: any) => <span>{moment(text).format("YYYY-MM-DD")}</span>,
+      title: 'Category',
+      dataIndex: "category",
+      key: "category",
+      render: (text: any) => (
+        <span>{text === "pepiniere" ? "Pépinière" : text}</span>
+      )
     },
     {
       title: "activity",
