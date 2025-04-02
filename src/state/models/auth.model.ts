@@ -70,7 +70,7 @@ export const AuthModel: Auth = {
       actions.request(false as any);
       //   redirectTo(routes.homePage);
       window.location.href = routes.dashboard;
-    } catch (error) {
+    } catch (error: any) {
       actions.request(false as any);
       actions.failure(error.response ? error.response.data : null);
       console.log(error.response.data);
